@@ -51,12 +51,39 @@ def export_results(results):
         writer.writerow(['word', 'frequency'])
         for word, freq in results['top_words']:
             writer.writerow([word, freq])
+
+
+def tdfidf_analysis(text):
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform([text])
+    feature_names = vectorizer.get_feature_names_out()
+    tfidf_scores = tfidf_matrix.toarray()[0]
+    tfidf_dict = {feature_names[i]: tfidf_scores[i] for i in range(len(feature_names))}
+    sorted_tfidf = sorted(tfidf_dict.items(), key=lambda x: x[1], reverse=True)
+    return sorted_tfidf
 def main():
     with open('text.txt', 'r', encoding='utf-8') as f:
         text = f.read()
-    results = analyze_text(text)
-    generate_wordcloud(text)
-    export_results(results)
 
+    if (not text.strip()):
+        print("The input text file is empty.")
+        return
+    else:
+        print("The input text file is not empty.")
+
+    results = analyze_text(text)
+    generate_wordcloud(text)    
+    export_results(results)
+    tfidf_results = tdfidf_analysis(text)
+    print(tfidf_results)
+
+    with open('tfidf_results.json', 'w', encoding='utf-8') as f:
+        json.dump(tfidf_results, f, ensure_ascii=False, indent=4)
+    with open('tfidf_results.csv', 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(['word', 'tfidf_score'])
+        for word, score in tfidf_results:
+            writer.writerow([word, score])
+            
 if __name__ == "__main__":
     main()
