@@ -41,7 +41,7 @@ def generate_wordcloud(text):
     plt.figure(figsize=(10, 5))
     plt.imshow(wc, interpolation='bilinear')
     plt.axis('off')
-    plt.savefig('wordcloud.png') 
+    plt.savefig('wordcloud.png')  
 
 def export_results(results):
     with open('results.json', 'w', encoding='utf-8') as f:
@@ -84,6 +84,6 @@ def main():
         writer.writerow(['word', 'tfidf_score'])
         for word, score in tfidf_results:
             writer.writerow([word, score])
-            
+
 if __name__ == "__main__":
     main()
