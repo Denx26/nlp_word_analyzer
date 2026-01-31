@@ -4,8 +4,8 @@ from nltk.tokenize import word_tokenize
 from nltk.probability import FreqDist
 from nltk.util import ngrams
 from sklearn.feature_extraction.text import TfidfVectorizer
-import matplotlib.pyplot as plt
 from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 import json
 import csv
 
@@ -61,6 +61,16 @@ def tdfidf_analysis(text):
     tfidf_dict = {feature_names[i]: tfidf_scores[i] for i in range(len(feature_names))}
     sorted_tfidf = sorted(tfidf_dict.items(), key=lambda x: x[1], reverse=True)
     return sorted_tfidf
+
+def find_concordance(text, target_word, window=5):
+    words = word_tokenize(text.lower())
+    contexts = []
+    for i, word in enumerate(words):
+        if word == target_word.lower():
+            start = max(0, i - window)
+            end = min(len(words), i + window + 1)
+            contexts.append(" ".join(words[start:end]))
+    return contexts
 def main():
     with open('text.txt', 'r', encoding='utf-8') as f:
         text = f.read()
@@ -93,5 +103,10 @@ def main():
     print(f"Cuvinte unice: {len(results['unique_list'])}")
     print(f"Total cuvinte: {len(results['unique_list'])}")
     print(f"Type-Token Ratio (TTR): {results['ttr']:.3f}")
+    print("\nCautare context pentru cuvantul 'exemplu':")
+    contexts = find_concordance(text, "exemplu")
+    for context in contexts:
+        print(f"...{context}...")
+
 if __name__ == "__main__":
     main()
