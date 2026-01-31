@@ -84,6 +84,14 @@ def main():
         writer.writerow(['word', 'tfidf_score'])
         for word, score in tfidf_results:
             writer.writerow([word, score])
-
+    print (f"\nAnaliza text: text.txt ({len(text.split())} cuvinte) a fost finalizata. Rezultatele au fost salvate in results.json, results.csv, tfidf_results.json, tfidf_results.csv si wordcloud.png.")
+    print("-" * 30)
+    print("Top 10 cuvinte frecvente (fara stopwords):")
+    for i, (word, freq) in enumerate(results['top_words'], 1):
+        print(f"{i}. {word}: {freq} aparitii")
+    print(f"\nDiversitate vocabular: ")
+    print(f"Cuvinte unice: {len(results['unique_list'])}")
+    print(f"Total cuvinte: {len(results['unique_list'])}")
+    print(f"Type-Token Ratio (TTR): {results['ttr']:.3f}")
 if __name__ == "__main__":
     main()
