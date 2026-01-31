@@ -8,6 +8,7 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import json
 import csv
+import os 
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -72,6 +73,10 @@ def find_concordance(text, target_word, window=5):
             contexts.append(" ".join(words[start:end]))
     return contexts
 def main():
+
+    if not os.path.exists('text.txt'):
+        print("Fisierul text.txt nu a fost gasit.")
+        return 
     with open('text.txt', 'r', encoding='utf-8') as f:
         text = f.read()
 
