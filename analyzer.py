@@ -10,7 +10,9 @@ import json
 import csv
 import os 
 
+
 nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('stopwords')
 
 def analyze_text(text):
