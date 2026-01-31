@@ -9,4 +9,4 @@ RUN python -m nltk.downloader punkt punkt_tab stopwords
 
 COPY . .
 
-CMD ["python", "analyzer.py"]
+CMD ["python", "analyzer.py", "text.txt", "--top", "10"]
