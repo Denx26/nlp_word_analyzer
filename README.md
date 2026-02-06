@@ -3,7 +3,7 @@
 ## Motivarea si scopul proiectului
 
 ### Motivarea
-Acest proiect a fost realizat ca parte a cursului **Tehnologii AI**, la Universitatea Politehnica Timisoara, specializarea Informatica. Procesarea limbajului natural reprezintă un pilon fundamental în dezvoltarea sistemelor moderne de Inteligență Artificială.
+Acest proiect a fost realizat ca parte a cursului **Metode Avansate de programare**, la Universitatea Politehnica Timisoara, specializarea Informatica. Procesarea limbajului natural reprezintă un pilon fundamental în dezvoltarea sistemelor moderne de Inteligență Artificială.
 
 ### Scopul
 Scopul principal al proiectului este de a crea un instrument capabil să proceseze texte brute pentru a extrage informații statistice valoroase. Aplicația implementează tehnici de tokenizare, filtrare a stopword-urilor și analiză de frecvență.
