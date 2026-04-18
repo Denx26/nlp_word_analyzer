@@ -1,71 +1,47 @@
-# Documentatie Tehnica - Proiect NLP Word Analyzer 2026
+# NLP Word Analyzer 
 
-## Motivarea si scopul proiectului
+A Python-based Natural Language Processing tool designed to process raw text and extract meaningful statistical insights. This application implements fundamental NLP techniques including tokenization, stopword filtering, and vocabulary diversity analysis.
 
-### Motivarea
-Acest proiect a fost realizat ca parte a cursului **Metode Avansate de programare**, la Universitatea Politehnica Timisoara, specializarea Informatica. Procesarea limbajului natural reprezintă un pilon fundamental în dezvoltarea sistemelor moderne de Inteligență Artificială.
+## 🚀 Purpose
+The primary goal of this project is to provide a lightweight, containerized tool for text analysis. It is built to handle both English and Romanian text, making it versatile for multilingual datasets.
 
-### Scopul
-Scopul principal al proiectului este de a crea un instrument capabil să proceseze texte brute pentru a extrage informații statistice valoroase. Aplicația implementează tehnici de tokenizare, filtrare a stopword-urilor și analiză de frecvență.
+## 🛠️ Implementation Details
+The project is built with **Python**, utilizing industry-standard libraries for linguistic computation and data visualization.
 
-## Detalii de implementare
+### Project Structure
+*   `analyzer.py` – Core logic for text processing and statistical calculations.
+*   `text.txt` – Input file containing the source text for analysis.
+*   `Dockerfile` – Configuration for containerizing the application.
+*   `requirements.txt` – List of dependencies (`nltk`, `scikit-learn`, `matplotlib`, `wordcloud`).
 
-Proiectul a fost implementat folosind limbajul **Python**, utilizând biblioteci specializate pentru analiza datelor și prelucrarea textului.
+## ✨ Key Features
 
-### Structura codului
+### 1. Text Analysis & Normalization
+The `analyze_text` function handles the heavy lifting:
+*   **Tokenization:** Breaks down raw text into individual words.
+*   **Normalization:** Converts text to lowercase for consistency.
+*   **Stopword Filtering:** Removes common "noise" words in both Romanian and English to focus on meaningful content.
 
-- **analyzer.py** - conține implementarea logicii de procesare, filtrare și calcularea statisticilor.
-- **text.txt** - fișierul de intrare care conține textul ce urmează a fi analizat.
-- **Dockerfile** - descrie mediul de rulare al aplicației într-un container Docker.
-- **requirements.txt** - listează bibliotecile externe necesare (nltk, scikit-learn, matplotlib, wordcloud).
+### 2. Statistics & Diversity Metrics
+*   **Frequency Analysis:** Identifies and ranks the most used words in the document.
+*   **Type-Token Ratio (TTR):** Calculates the ratio of unique words to the total word count to measure vocabulary richness.
 
-### Explicatie Functionalitati
+### 3. Concordance Identification
+The `find_concordance` feature allows users to locate specific words within their immediate context, helping to understand how terms are used throughout the text.
 
-1. **Analiza Textului (analyze_text)**
-    - Realizează tokenizarea textului și normalizarea acestuia prin transformarea în minuscule.
-    - Filtrează cuvintele comune (stopwords) pentru limbile română și engleză.
+## 📊 Visual Examples
 
-2. **Calcul Statistici si Diversitate**
-    - Identifică cele mai frecvente cuvinte și calculează **Type-Token Ratio (TTR)** pentru a măsura diversitatea vocabularului.
-    - Exemplu de rulare (top 10 cuvinte) în **terminal**:
+### Top 10 Most Frequent Words
+![Top 10 Words](1.png)
 
-![Top 10 Cuvinte](1.png)
+### Vocabulary Diversity Stats
+![Diversity Statistics](2.png)
 
-3. **Verificarea Diversității Vocabularului**
-    - Afișează numărul total de cuvinte, cuvintele unice și raportul TTR.
-    - Exemplu de rulare pentru diversitate:
+## 📦 Installation & Usage
 
-![Statistici Diversitate](2.png)
+To run this project locally using Docker, follow these steps:
 
-4. **Identificare Concordanta (find_concordance)**
-    - Permite identificarea contextului imediat în care un anumit cuvânt este utilizat.
-    - Exemplu de rulare al funcției **find_concordance** în **terminal**:
-
-![Concordanta](3.png)
-
-## Tehnologii Folosite
-
-- **Limbaj de programare**: **Python**.
-- **Gestionarea mediului de rulare**: **Docker**.
-- **Controlul versiunilor**: **Git**.
-- **Editor de cod**: **Visual Studio Code**.
-
-## Mediul de Dezvoltare
-
-- **Sistem de operare**: Windows 11
-- **Editor/IDE**: Visual Studio Code
-- **Containerizare**: Docker
-
-## Bibliografie
-
-1. **Curs Metode Avansate de Programare** - Exemple si materiale despre **Dockerfile** si **CI/CD**. Universitatea Politehnica Timisoara, 2025-2026.
-2. **Documentatie NLTK** - Ghid oficial pentru `punkt_tab` și `stopwords`: https://www.nltk.org/.
-3. **Scikit-Learn Docs** - Documentație pentru `TfidfVectorizer`: https://scikit-learn.org/.
-4. **Gemini** - Asistență pentru optimizarea `Dockerfile` și structurarea documentației.
-
-## Exemple de Rulare
-
-### Construirea imaginii docker
+### Build the Docker image:
 ```bash
 docker build -t nlp-analyzer .
 docker run nlp-analyzer
